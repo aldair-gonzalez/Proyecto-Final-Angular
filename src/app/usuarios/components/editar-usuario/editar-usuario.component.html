@@ -1,0 +1,32 @@
+<div mat-dialog-content>
+  <form [formGroup]="formulario">
+    <div class="d-flex justify-content-center m-3">
+      <mat-form-field appearance="legacy" style="width: 100%;">
+        <mat-label>Nombre</mat-label>
+        <input matInput type="text" formControlName="nombre">
+        <mat-hint *ngIf="formulario.get('nombre')?.touched && formulario.get('nombre')?.errors?.['required']" class="text-danger">Este campo es requerido</mat-hint>
+      </mat-form-field>
+    </div>
+    <div class="d-flex justify-content-center m-3">
+      <mat-form-field appearance="legacy" style="width: 100%;">
+        <mat-label>Usuario</mat-label>
+        <input matInput type="text" formControlName="usuario">
+        <mat-hint *ngIf="formulario.get('usuario')?.touched && formulario.get('usuario')?.errors?.['required']" class="text-danger">Este campo es requerido</mat-hint>
+      </mat-form-field>
+    </div>
+    <div class="d-flex justify-content-center m-3">
+      <mat-form-field appearance="legacy" style="width: 100%;">
+        <mat-label>Contraseña</mat-label>
+        <input matInput type="text" formControlName="contrasena">
+        <mat-hint *ngIf="formulario.get('contrasena')?.touched && formulario.get('contrasena')?.errors?.['required']" class="text-danger">Este campo es requerido</mat-hint>
+      </mat-form-field>
+    </div>
+    <div class="d-flex justify-content-center m-3">
+      <mat-slide-toggle formControlName="permisos">Administrador</mat-slide-toggle>
+    </div>
+  </form>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="cerrar()">Cancelar</button>
+  <button mat-raised-button (click)="editar()">Guardar cambios</button>
+</div>

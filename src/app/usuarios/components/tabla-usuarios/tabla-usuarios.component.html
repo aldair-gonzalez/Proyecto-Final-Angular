@@ -1,0 +1,53 @@
+<h2 class="fs-3 p-4 pb-0">Tabla de Usuarios</h2>
+<div *ngIf="(cargando$ | async)">
+  cargando...
+</div>
+<div class="container-fluid" *ngIf="!(cargando$ | async)">
+  <div class="row">
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z1">
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef> # </th>
+        <td mat-cell *matCellDef="let usuario"> {{ usuario.id }} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="nombre">
+        <th mat-header-cell *matHeaderCellDef> Nombre </th>
+        <td mat-cell *matCellDef="let usuario"> {{ usuario.nombre }} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="username">
+        <th mat-header-cell *matHeaderCellDef> Usuario </th>
+        <td mat-cell *matCellDef="let usuario"> {{ usuario.usuario }} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="email">
+        <th mat-header-cell *matHeaderCellDef> Email </th>
+        <td mat-cell *matCellDef="let usuario"> {{ usuario.email }} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="role">
+        <th mat-header-cell *matHeaderCellDef> Permisos </th>
+        <td mat-cell *matCellDef="let usuario"> {{ usuario.admin }} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="acciones">
+        <th mat-header-cell *matHeaderCellDef> Acciones </th>
+        <td mat-cell *matCellDef="let usuario">
+          <button mat-icon-button color="primary" (click)="editar(usuario)">
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button mat-icon-button color="warn" (click)="eliminar(usuario)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="columnas"></tr>
+      <tr
+        mat-row
+        *matRowDef="let row; columns: columnas"
+        class="table__item"
+      ></tr>
+    </table>
+  </div>
+</div>

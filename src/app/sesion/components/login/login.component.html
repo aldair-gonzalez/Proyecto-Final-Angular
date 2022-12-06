@@ -1,0 +1,27 @@
+<div class="row w-100 h-100 d-flex justify-content-center align-items-center">
+  <mat-card class="col-md-4 ps-5 pe-5">
+    <form class="d-flex flex-column justify-content-center align-items-center" [formGroup]="formulario" (ngSubmit)="login()">
+      <mat-card-title class="text-center text-primary">Iniciar sesión</mat-card-title>
+      <mat-card-content>
+        <mat-form-field appearance="legacy" style="width: 100%;">
+          <mat-label>Email</mat-label>
+          <input matInput type="text" formControlName="email">
+          <mat-hint *ngIf="formulario.get('email')?.touched && formulario.get('email')?.errors?.['required']" class="text-danger">Este campo es requerido</mat-hint>
+          <mat-hint *ngIf="formulario.get('email')?.touched && formulario.get('email')?.errors?.['pattern']" class="text-danger">Ingrese un correo válido</mat-hint>
+        </mat-form-field>
+        <mat-form-field appearance="legacy" style="width: 100%;">
+          <mat-label>Contraseña</mat-label>
+          <input matInput type="text" formControlName="contrasena">
+          <mat-hint *ngIf="formulario.get('contrasena')?.touched && formulario.get('contrasena')?.errors?.['required']" class="text-danger">Este campo es requerido</mat-hint>
+        </mat-form-field>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-flat-button color="primary" [disabled]="formulario.invalid" id="btnIniciarSesion">Iniciar sesión</button>
+      </mat-card-actions>
+      <p class="fw-light">¿Todavía no tienes una cuenta?</p>
+      <a role="button" title="Crear una cuenta" routerLink="../sigin" class="link-primary">
+        Crear cuenta
+      </a>
+    </form>
+  </mat-card>
+</div>

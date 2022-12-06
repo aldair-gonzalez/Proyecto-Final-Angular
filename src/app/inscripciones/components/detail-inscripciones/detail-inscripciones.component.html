@@ -1,0 +1,50 @@
+<button mat-icon-button color="primary" routerLink="/inscripciones">
+  <mat-icon>
+    arrow_back
+  </mat-icon>
+</button>
+
+<div class="row d-flex justify-content-end p-3 pe-4 bg-dark">
+  <button mat-raised-button color="primary" title="Editar curso" class="ms-3" title="Inscribirme al curso" (click)="inscribir()">
+    Inscribirme
+  </button>
+</div>
+
+<div class="container p-4" *ngFor="let curso of curso$ | async">
+  <div class="row">
+    <div class="col-12">
+      <h2 class="fs-3">{{curso.curso}}</h2>
+      <div class="row">
+        <div class="col-6">
+          <p class="text-primary">
+            Profesor:
+            <span class="text-secondary">{{ curso.profesor }}</span>
+          </p>
+        </div>
+        <div class="col-6">
+          <p class="text-primary">
+            Comision:
+            <span class="text-secondary">{{ curso.comision }}</span>
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="col-12">
+      <div class="row">
+        <div class="col-6">
+          <p class="text-primary">
+            Fecha de Inicio:
+            <span class="text-secondary">{{ curso.f_inicio }}</span>
+          </p>
+        </div>
+        <div class="col-6">
+          <p class="text-primary">
+            Fecha de Fin:
+            <span class="text-secondary">{{ curso.f_fin }}</span>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

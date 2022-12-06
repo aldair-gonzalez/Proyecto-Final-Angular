@@ -1,0 +1,95 @@
+<button mat-icon-button color="primary" routerLink="/cursos">
+  <mat-icon>
+    arrow_back
+  </mat-icon>
+</button>
+
+<div class="row d-flex justify-content-end p-3 pe-4 bg-dark">
+  <button mat-mini-fab color="primary" title="Editar curso" class="ms-3" (click)="updateCurso(curso)">
+    <mat-icon>edit</mat-icon>
+  </button>
+  <button mat-mini-fab color="warn" title="Eliminar curso" class="ms-3" (click)="deleteCurso()">
+    <mat-icon>delete</mat-icon>
+  </button>
+</div>
+
+<div class="container p-4" *ngFor="let curso of curso$ | async">
+  <div class="row">
+    <div class="col-12">
+      <h2 class="fs-3">{{curso.curso}}</h2>
+      <div class="row">
+        <div class="col-4">
+          <p class="text-primary">
+            Profesor:
+            <span class="text-secondary">{{ curso.profesor }}</span>
+          </p>
+        </div>
+        <div class="col-4">
+          <p class="text-primary">
+            Comision:
+            <span class="text-secondary">{{ curso.comision }}</span>
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="col-12">
+      <div class="row">
+        <div class="col-4">
+          <p class="text-primary">
+            Fecha de Inicio:
+            <span class="text-secondary">{{ curso.f_inicio }}</span>
+          </p>
+        </div>
+        <div class="col-4">
+          <p class="text-primary">
+            Fecha de Fin:
+            <span class="text-secondary">{{ curso.f_fin }}</span>
+          </p>
+        </div>
+        <div class="col-4">
+          <p class="text-primary">
+            Inscripciones:
+            <span class="text-secondary">{{ curso.inscripcionAbierta }}</span>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <h2 class="fs-4 p-4 pb-0">Alumnos inscritos</h2>
+    <div class="container-fluid">
+      <div class="row">
+        <table mat-table [dataSource]="dataSource" class="mat-elevation-z1">
+
+          <ng-container matColumnDef="nombre">
+            <th mat-header-cell *matHeaderCellDef> Nombre </th>
+            <td mat-cell *matCellDef="let alumno"> {{ alumno.nombre }} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="email">
+            <th mat-header-cell *matHeaderCellDef> email </th>
+            <td mat-cell *matCellDef="let alumno"> {{ alumno.email }} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="acciones">
+            <th mat-header-cell *matHeaderCellDef> Acciones </th>
+            <td mat-cell *matCellDef="let alumno">
+              <button mat-icon-button color="primary" (click)="eliminarAlumno(alumno)">
+                <mat-icon>delete</mat-icon>
+              </button>
+            </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="columnas"></tr>
+          <tr
+            mat-row
+            *matRowDef="let row; columns: columnas"
+            class="table__item"
+          ></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+

@@ -1,0 +1,90 @@
+<ng-container class="w-100 h-100">
+  <div *ngIf="sesion$ | async ">
+    <mat-toolbar color="primary">
+      <mat-toolbar-row class="w-100 d-flex justify-content-between">
+        <span role="button" routerLink="/" class="fs-3">Angular 32320 </span>
+        <span class="fs-6">Hola {{ usuario }}</span>
+        <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+          <mat-icon>menu</mat-icon>
+        </button>
+      </mat-toolbar-row>
+    </mat-toolbar>
+
+    <mat-drawer-container>
+      <mat-drawer mode="side" opened>
+        <mat-accordion>
+          <mat-expansion-panel (opened)="panelOpenState = true"
+                               (closed)="panelOpenState = false">
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                Alumnos
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <mat-list>
+              <mat-list-item role="button" routerLink="alumnos">
+                Ver lista de alumnos
+              </mat-list-item>
+              <mat-divider></mat-divider>
+            </mat-list>
+          </mat-expansion-panel>
+        </mat-accordion>
+        <mat-accordion>
+          <mat-expansion-panel (opened)="panelOpenState = true"
+                               (closed)="panelOpenState = false">
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                Cursos
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <mat-list>
+              <mat-list-item role="button" routerLink="cursos">
+                Ver lista de Cursos
+              </mat-list-item>
+              <mat-list-item role="button" routerLink="cursos/create">
+                Crear curso
+              </mat-list-item>
+            </mat-list>
+          </mat-expansion-panel>
+        </mat-accordion>
+        <mat-accordion>
+          <mat-expansion-panel (opened)="panelOpenState = true"
+                               (closed)="panelOpenState = false">
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                Inscripciones
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <mat-list>
+              <mat-list-item role="button" routerLink="inscripciones">
+                Ver lista cursos disponibles
+              </mat-list-item>
+            </mat-list>
+          </mat-expansion-panel>
+        </mat-accordion>
+        <mat-accordion *ngIf="admin">
+          <mat-expansion-panel (opened)="panelOpenState = true"
+                               (closed)="panelOpenState = false">
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                Usuarios
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <mat-list>
+              <mat-list-item role="button" routerLink="usuarios">
+                Ver lista de Usuarios
+              </mat-list-item>
+            </mat-list>
+          </mat-expansion-panel>
+        </mat-accordion>
+      </mat-drawer>
+      <mat-drawer-content style="min-height: 90vh;">
+
+        <router-outlet></router-outlet>
+
+      </mat-drawer-content>
+    </mat-drawer-container>
+  </div>
+  <span *ngIf="!(sesion$ | async)">
+    <router-outlet></router-outlet>
+  </span>
+</ng-container>

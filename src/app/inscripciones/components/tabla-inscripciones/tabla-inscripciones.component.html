@@ -1,0 +1,38 @@
+<h2 class="fs-3 p-4 pb-0">Tabla de inscripciones</h2>
+<div *ngIf="(cargando$ | async)">
+  Cargando...
+</div>
+<div class="container-fluid" *ngIf="!(cargando$ | async)">
+  <div class="row">
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z1">
+      <ng-container matColumnDef="nombre">
+        <th mat-header-cell *matHeaderCellDef> Curso </th>
+        <td mat-cell *matCellDef="let curso"> {{ curso.curso }} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="comienza">
+        <th mat-header-cell *matHeaderCellDef> Comienza </th>
+        <td mat-cell *matCellDef="let curso"> {{ curso.f_inicio | date: 	'dd/MM/YYYY' }} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="termina">
+        <th mat-header-cell *matHeaderCellDef> Termina </th>
+        <td mat-cell *matCellDef="let curso"> {{ curso.f_fin | date: 	'dd/MM/YYYY' }} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="profesor">
+        <th mat-header-cell *matHeaderCellDef> Profesor </th>
+        <td mat-cell *matCellDef="let curso"> {{ curso.profesor }} </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="columnas"></tr>
+      <tr
+        mat-row
+        *matRowDef="let row; columns: columnas"
+        [routerLink]="'/inscripciones/'+row.id"
+        role="button"
+        class="table__item"
+      ></tr>
+    </table>
+  </div>
+</div>

@@ -1,0 +1,12 @@
+.table{
+  &__item{
+    transition: background-color .1s ease;
+    &--false {
+      border-left: .5em solid rgb(255, 0, 0);
+    }
+
+    &:hover {
+      background-color: rgba(225, 225, 225, 0.5);
+    }
+  }
+}

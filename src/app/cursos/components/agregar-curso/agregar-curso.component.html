@@ -1,0 +1,61 @@
+<div class="container mb-3">
+  <div class="row">
+    <div class="col">
+      <div class="row p-2 gap-2">
+        <mat-card class="col-md-12">
+          <h2 class="f-2">Crear nuevo curso</h2>
+        </mat-card>
+
+        <form [formGroup]="formulario" (ngSubmit)="addCurso()">
+          <div class="d-flex justify-content-center m-3">
+            <mat-form-field appearance="legacy" style="width: 100%;">
+              <mat-label>Nombre</mat-label>
+              <input matInput type="text" formControlName="nombre">
+              <mat-hint *ngIf="formulario.get('nombre')?.touched && formulario.get('nombre')?.errors?.['required']" class="text-danger">Este campo es requerido</mat-hint>
+            </mat-form-field>
+          </div>
+          <div class="d-flex justify-content-center m-3">
+            <mat-form-field appearance="legacy" style="width: 100%;">
+              <mat-label>Comision</mat-label>
+              <input matInput type="number" formControlName="comision">
+              <mat-hint *ngIf="formulario.get('comision')?.touched && formulario.get('comision')?.errors?.['required']" class="text-danger">Este campo es requerido</mat-hint>
+            </mat-form-field>
+          </div>
+          <div class="d-flex justify-content-center m-3">
+            <mat-form-field appearance="legacy" style="width: 100%;">
+              <mat-label>Profesor</mat-label>
+              <input matInput type="text" formControlName="profesor">
+              <mat-hint *ngIf="formulario.get('profesor')?.touched && formulario.get('profesor')?.errors?.['required']" class="text-danger">Este campo es requerido</mat-hint>
+            </mat-form-field>
+          </div>
+          <div class="d-flex justify-content-center m-3">
+            <mat-form-field appearance="legacy" style="width: 100%;">
+              <mat-label>Comienza</mat-label>
+              <input matInput [matDatepicker]="f_inicio" formControlName="f_inicio">
+              <mat-hint>MM/DD/YYYY</mat-hint>
+              <mat-datepicker-toggle matSuffix [for]="f_inicio"></mat-datepicker-toggle>
+              <mat-datepicker #f_inicio></mat-datepicker>
+            </mat-form-field>
+          </div>
+          <div class="d-flex justify-content-center m-3">
+            <mat-form-field appearance="legacy" style="width: 100%;">
+              <mat-label>Termina</mat-label>
+              <input matInput [matDatepicker]="f_fin" formControlName="f_fin">
+              <mat-hint>MM/DD/YYYY</mat-hint>
+              <mat-datepicker-toggle matSuffix [for]="f_fin"></mat-datepicker-toggle>
+              <mat-datepicker #f_fin></mat-datepicker>
+            </mat-form-field>
+          </div>
+          <div class="d-flex justify-content-center m-3">
+            <mat-slide-toggle formControlName="inscripcionAbierta">Inscripcion Abierta</mat-slide-toggle>
+          </div>
+          <div class="container-fluid d-flex justify-content-end fixed-bottom gap-2 mb-2">
+            <button mat-flat-button color="warn" routerLink="/cursos" class="ps-4 pe-4">
+              Cancelar
+            </button>
+            <button mat-flat-button [disabled]="formulario.invalid" color="primary" class="ps-4 pe-4">Agregar curso</button>
+          </div>
+        </form>
+    </div>
+  </div>
+</div>
