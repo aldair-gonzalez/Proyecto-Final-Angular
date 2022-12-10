@@ -5,6 +5,7 @@ import { catchError, Observable, Subscription, throwError } from 'rxjs';
 import { Curso } from 'src/app/models/curso.model';
 import { environment } from 'src/environments/environment';
 import { map } from 'rxjs/operators';
+import { Usuario } from '../../models/usuario.model';
 
 @Injectable()
 export class CursoService {

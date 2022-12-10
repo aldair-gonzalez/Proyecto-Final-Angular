@@ -35,11 +35,11 @@
   </div>
 
   <h2 class="fs-3 p-4 pb-0">Tabla de cursos</h2>
-  <!-- <div *ngIf="(cargando$ | async)">
-    Cargando...
-  </div> -->
-  <!-- <div class="container-fluid" *ngIf="!(cargando$ | async)"> -->
   <div class="container-fluid">
+    <h3 class="fs-4 m-4" *ngIf="alumno.cursos.length <= 0">
+      {{ alumno.nombre }} aún no se ha inscrito a algún curso
+    </h3>
+    <div class="row" *ngIf="alumno.cursos.length > 0">
     <div class="row">
       <table mat-table [dataSource]="dataSource" class="mat-elevation-z1">
 

@@ -27,7 +27,7 @@
 
       <ng-container matColumnDef="role">
         <th mat-header-cell *matHeaderCellDef> Permisos </th>
-        <td mat-cell *matCellDef="let usuario"> {{ usuario.admin }} </td>
+        <td mat-cell *matCellDef="let usuario"> {{ usuario.admin | permisos : 'Administrador' : 'Usuario' }} </td>
       </ng-container>
 
       <ng-container matColumnDef="acciones">

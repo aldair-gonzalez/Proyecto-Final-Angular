@@ -11,9 +11,6 @@ import { alumnoFeatureKey, reducer } from '../core/state/alumno/alumno.reducer';
 import { EffectsModule } from '@ngrx/effects';
 import { AlumnoEffects } from '../core/state/alumno/alumno.effects';
 import { EditarAlumnoComponent } from './components/editar-alumno/editar-alumno.component';
-import { CursosEffects } from '../cursos/state/cursos.effects';
-import { CursoService } from '../core/services/curso.service';
-import { AlumnoService } from '../core/services/alumno.service';
 
 
 @NgModule({
@@ -29,8 +26,7 @@ import { AlumnoService } from '../core/services/alumno.service';
 
     AlumnosRoutingModule,
     StoreModule.forFeature(alumnoFeatureKey, reducer),
-    EffectsModule.forFeature([AlumnoEffects, CursosEffects])
+    EffectsModule.forFeature([AlumnoEffects])
   ],
-  providers: [CursoService]
 })
 export class AlumnosModule { }

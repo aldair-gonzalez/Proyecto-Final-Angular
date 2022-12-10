@@ -11,7 +11,6 @@ import { eliminarAlumno, editarAlumno } from '../../../core/state/alumno/alumno.
 import { EditarAlumnoComponent } from '../editar-alumno/editar-alumno.component';
 import { Usuario } from '../../../models/usuario.model';
 import { CursoState } from '../../../models/curso.state.model';
-import { selectCursos } from '../../../cursos/state/cursos.selectors';
 import { editarCurso } from '../../../cursos/state/cursos.actions';
 
 @Component({
@@ -56,10 +55,7 @@ export class DetailAlumnoComponent implements OnInit, OnDestroy {
         this.alumno = alumno[0]
       })
 
-      this.cursoStore.select(selectCursos).subscribe((curso) => {
-        let cursosInscrito = curso.filter((c: Curso) => this.alumno.id_cursos.find((id) => id == c.id))
-        this.dataSource = new MatTableDataSource<Curso>(cursosInscrito)
-      })
+      this.dataSource = new MatTableDataSource<Curso>(this.alumno.cursos)
     });
   }
 
@@ -80,18 +76,18 @@ export class DetailAlumnoComponent implements OnInit, OnDestroy {
     let cursoClone: Curso = structuredClone(curso);
     let alumnoClone: Usuario = structuredClone(this.alumno);
 
-    let idCursos: string[] = structuredClone(alumnoClone.id_cursos)
-    let positionCurso = idCursos.indexOf(cursoClone.id)
+    let idCursos: Curso[] = structuredClone(alumnoClone.cursos)
+    let positionCurso = idCursos.indexOf(cursoClone)
 
     idCursos.splice(positionCurso, 1)
-    alumnoClone.id_cursos = idCursos;
+    alumnoClone.cursos = idCursos;
     this.storeAlumnos.dispatch(editarAlumno({alumno: alumnoClone}))
 
-    let idAlumnos: string[] = structuredClone(cursoClone.id_alumnos)
-    let positionAlumno = idAlumnos.indexOf(alumnoClone.id)
+    let idAlumnos: Usuario[] = structuredClone(cursoClone.alumnos)
+    let positionAlumno = idAlumnos.indexOf(alumnoClone)
 
     idAlumnos.splice(positionAlumno, 1)
-    cursoClone.id_alumnos = idAlumnos;
+    cursoClone.alumnos = idAlumnos;
     this.cursoStore.dispatch(editarCurso({curso: cursoClone}))
 
     alert('Se des inscribio del curso')

@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { map, Observable, Subscription } from 'rxjs';
 
@@ -34,6 +34,7 @@ export class DetailInscripcionesComponent implements OnInit, OnDestroy {
     private storeSesion: Store<Sesion>,
     private alumnoStore: Store<UsuarioState>,
     private cursoStore: Store<CursoState>,
+    private router: Router,
   ) { }
 
   ngOnInit(): void {
@@ -59,9 +60,11 @@ export class DetailInscripcionesComponent implements OnInit, OnDestroy {
     this.storeSesion.select(selectUsuarioActivo).subscribe((u) => {
       if(u) {
         let newCurso: Curso = structuredClone(this.curso);
-        newCurso.id_alumnos.push(u.id)
-        this.alumnoStore.dispatch(editarAlumno({alumno: u, idCurso: this.curso.id}))
+        newCurso.alumnos.push(u)
+        this.alumnoStore.dispatch(editarAlumno({alumno: u, curso: this.curso}))
         this.cursoStore.dispatch(editarCurso({curso: newCurso}))
+        alert('Se ha inscrito')
+        this.router.navigate(['inscripciones'])
       }
     })
   }

@@ -36,7 +36,7 @@ export class EditarAlumnoComponent implements OnInit {
       email: this.alumno.email,
       contrasena: this.alumno.contrasena,
       admin: this.alumno.admin,
-      id_cursos: this.alumno.id_cursos,
+      cursos: this.alumno.cursos,
     }
     this.storeAlumnos.dispatch(editarAlumno({alumno: a}));
     this.dialogRef.close();

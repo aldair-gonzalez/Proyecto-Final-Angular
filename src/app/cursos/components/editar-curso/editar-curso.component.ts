@@ -42,7 +42,7 @@ export class EditarCursoComponent implements OnInit {
       f_inicio: this.formulario.value.f_inicio,
       f_fin: this.formulario.value.f_fin,
       inscripcionAbierta: this.formulario.value.inscripcionAbierta,
-      id_alumnos: this.curso.id_alumnos,
+      alumnos: this.curso.alumnos,
     }
     this.storeCursos.dispatch(editarCurso({curso: c}));
     this.dialogRef.close();

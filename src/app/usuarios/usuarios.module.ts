@@ -11,13 +11,15 @@ import { SharedModule } from '../shared/shared.module';
 import { StoreModule } from '@ngrx/store';
 import { usuarioFeatureKey, reducer } from './state/usuario.reducer';
 import { EditarUsuarioComponent } from './components/editar-usuario/editar-usuario.component';
+import { PermisosPipe } from './pipe/permisos.pipe';
 
 
 @NgModule({
   declarations: [
     IndexComponent,
     TablaUsuariosComponent,
-    EditarUsuarioComponent
+    EditarUsuarioComponent,
+    PermisosPipe
   ],
   imports: [
     CommonModule,

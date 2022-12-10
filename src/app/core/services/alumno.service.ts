@@ -5,6 +5,7 @@ import { map, Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { CursoState } from '../../models/curso.state.model';
 import { Usuario } from '../../models/usuario.model';
+import { Curso } from '../../models/curso.model';
 
 @Injectable()
 export class AlumnoService {
@@ -16,14 +17,14 @@ export class AlumnoService {
 
   obtenerAlumnos(): Observable<Usuario[]> {
     return this.http.get<Usuario[]>(`${environment.api}/usuarios`).pipe(
-      map((alumnos: Usuario[]) => alumnos.filter((a: Usuario) => a.id_cursos.length > 0))
+      map((alumnos: Usuario[]) => alumnos.filter((a: Usuario) => a.cursos.length > 0))
     )
   }
 
-  editarAlumno(alumno: Usuario, idCurso?: string): Observable<Usuario> {
-    if(idCurso) {
+  editarAlumno(alumno: Usuario, curso?: Curso): Observable<Usuario> {
+    if(curso) {
       let newCurso = structuredClone(alumno);
-      newCurso.id_cursos.push(idCurso);
+      newCurso.cursos.push(curso);
       return this.http.put<Usuario>(`${environment.api}/usuarios/${alumno.id}`, newCurso)
     }
 
@@ -32,7 +33,7 @@ export class AlumnoService {
 
   eliminarAlumno(alumno: Usuario): Observable<Usuario> {
     let newAlumno = structuredClone(alumno);
-    newAlumno.id_cursos = [];
+    newAlumno.cursos = [];
     return this.http.put<Usuario>(`${environment.api}/usuarios/${alumno.id}`, newAlumno)
   }
 }

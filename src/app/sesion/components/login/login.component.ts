@@ -34,4 +34,19 @@ export class LoginComponent implements OnInit {
       this.store.dispatch(cargarSesion({usuario: user}))
     }
   }
+
+  formAdmin(e: Event) {
+    e.preventDefault()
+    this.formulario = new FormGroup({
+      email: new FormControl('Rasheed39@yahoo.com', [Validators.required, Validators.pattern('^[A-z, 0-9]+@[a-z]+\\.[a-z]{2,3}$')]),
+      contrasena: new FormControl('12345', [Validators.required]),
+    })
+  }
+  formUsuario(e: Event) {
+    e.preventDefault()
+    this.formulario = new FormGroup({
+      email: new FormControl('Cary.Wisoky44@gmail.com', [Validators.required, Validators.pattern('^[A-z, ., 0-9]+@[a-z]+\\.[a-z]{2,3}$')]),
+      contrasena: new FormControl('4WZ1km1TqgTx84C', [Validators.required]),
+    })
+  }
 }

@@ -56,7 +56,10 @@
     </div>
   </div>
 
-  <div class="row">
+  <h3 class="fs-4 m-4" *ngIf="curso.alumnos.length <= 0">
+    Aún no hay alumnos inscritos en este curso
+  </h3>
+  <div class="row" *ngIf="curso.alumnos.length > 0">
     <h2 class="fs-4 p-4 pb-0">Alumnos inscritos</h2>
     <div class="container-fluid">
       <div class="row">

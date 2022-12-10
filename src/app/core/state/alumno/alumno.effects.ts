@@ -27,7 +27,7 @@ export class AlumnoEffects {
   editarAlumno$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(AlumnoActions.editarAlumno),
-      concatMap(({alumno, idCurso}) => this.alumno.editarAlumno(alumno, idCurso).pipe(
+      concatMap(({alumno, curso}) => this.alumno.editarAlumno(alumno, curso).pipe(
         map((a: Usuario) => AlumnoActions.cargarAlumnos())
       ))
     );

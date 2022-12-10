@@ -30,7 +30,7 @@ import { AlumnoEffects } from '../core/state/alumno/alumno.effects';
 
     CursosRoutingModule,
     StoreModule.forFeature(cursosFeatureKey, reducer),
-    EffectsModule.forFeature([CursosEffects, AlumnoEffects]),
+    EffectsModule.forFeature([CursosEffects]),
   ],
   providers: [CursoService],
 })

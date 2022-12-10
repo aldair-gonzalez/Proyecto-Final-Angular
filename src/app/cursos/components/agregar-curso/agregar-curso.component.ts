@@ -38,7 +38,7 @@ export class AgregarCursoComponent implements OnInit {
       f_inicio: this.formulario.value.f_inicio,
       f_fin: this.formulario.value.f_fin,
       inscripcionAbierta: this.formulario.value.inscripcionAbierta,
-      id_alumnos: [],
+      alumnos: [],
     }
     this.storeCurso.dispatch(crearCurso({curso}));
     alert('Curso añadido');

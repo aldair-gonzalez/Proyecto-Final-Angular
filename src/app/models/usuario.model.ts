@@ -1,3 +1,4 @@
+import { Curso } from './curso.model';
 export interface Usuario {
   id: string;
   nombre: string;
@@ -5,5 +6,5 @@ export interface Usuario {
   contrasena: string;
   admin: boolean;
   email: string;
-  id_cursos: string[];
+  cursos: Curso[];
 }

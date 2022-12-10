@@ -38,7 +38,7 @@ export class EditarUsuarioComponent implements OnInit {
       contrasena: this.formulario.value.contrasena,
       admin: this.formulario.value.permisos,
       email: this.usuario.email,
-      id_cursos: this.usuario.id_cursos,
+      cursos: this.usuario.cursos,
     }
     this.storeUsuarios.dispatch(editarUsuario({usuario: u}));
     this.dialogRef.close();

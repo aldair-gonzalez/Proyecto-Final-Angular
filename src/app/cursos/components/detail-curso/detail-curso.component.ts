@@ -56,7 +56,7 @@ export class DetailCursoComponent implements OnInit, OnDestroy {
         this.curso = curso[0]
       })
 
-      // this.storeAlumnos.select(selectAlumnos).subscribe(console.log)
+      this.dataSource = new MatTableDataSource<Usuario>(this.curso.alumnos)
     });
   }
 
@@ -79,25 +79,25 @@ export class DetailCursoComponent implements OnInit, OnDestroy {
   }
 
   eliminarAlumno(alumno: Usuario) {
-    // let cursoClone: Curso = structuredClone(this.curso);
-    // let alumnoClone: Usuario = structuredClone(alumno);
+    let alumnoClone: Usuario = structuredClone(alumno);
+    let cursoClone: Curso = structuredClone(this.curso);
 
-    // let idAlumnos: string[] = structuredClone(cursoClone.id_alumnos)
-    // let positionAlumno = idAlumnos.indexOf(alumnoClone.id)
+    let alumnos: Usuario[] = structuredClone(cursoClone.alumnos)
+    let positionAlumno = alumnos.indexOf(alumnoClone)
 
-    // idAlumnos.splice(positionAlumno, 1)
-    // cursoClone.id_alumnos = idAlumnos;
-    // this.storeCursos.dispatch(editarCurso({curso: cursoClone}))
+    alumnos.splice(positionAlumno, 1)
+    cursoClone.alumnos = alumnos;
+    this.storeAlumnos.dispatch(editarCurso({curso: cursoClone}))
 
-    // let idAlumnos: string[] = structuredClone(cursoClone.id_alumnos)
-    // let positionAlumno = idAlumnos.indexOf(alumnoClone.id)
+    let cursos: Curso[] = structuredClone(alumnoClone.cursos)
+    let positionCurso = cursos.indexOf(cursoClone)
 
-    // idAlumnos.splice(positionAlumno, 1)
-    // cursoClone.id_alumnos = idAlumnos;
-    // this.cursoStore.dispatch(editarCurso({curso: cursoClone}))
+    cursos.splice(positionAlumno, 1)
+    alumnoClone.cursos = cursos;
+    this.storeAlumnos.dispatch(editarAlumno({alumno: alumnoClone}))
 
-    // alert('Se des inscribio del curso')
-    // this.router.navigate(['/alumnos'])
+    alert('Se des inscribio del curso')
+    this.router.navigate(['/cursos'])
   }
 
 }

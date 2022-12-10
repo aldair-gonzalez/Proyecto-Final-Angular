@@ -5,14 +5,12 @@ import { SesionRoutingModule } from './sesion-routing.module';
 import { IndexComponent } from './components/index/index.component';
 import { SharedModule } from '../shared/shared.module';
 import { LoginComponent } from './components/login/login.component';
-import { SiginComponent } from './components/sigin/sigin.component';
 
 
 @NgModule({
   declarations: [
     IndexComponent,
-    LoginComponent,
-    SiginComponent
+    LoginComponent
   ],
   imports: [
     CommonModule,
